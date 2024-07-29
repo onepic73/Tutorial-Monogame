@@ -1,0 +1,51 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "untitled.tmx",
+    "expandedProjectPaths": [
+        "Tileset",
+        "."
+    ],
+    "fileStates": {
+        "Tileset/World_Tileset.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 3
+        },
+        "Tileset/collisions.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 3
+        },
+        "untitled.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 629,
+                "y": 219.66666666666663
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/Tileset/Output",
+    "last.imagePath": "C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame",
+    "map.lastUsedExportFilter": "CSV files (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "untitled.tmx",
+        "Tileset/World_Tileset.tsx",
+        "Tileset/collisions.tsx"
+    ],
+    "project": "Tutoriel.tiled-project",
+    "recentFiles": [
+        "Tileset/collisions.tsx",
+        "Tileset/World_Tileset.tsx",
+        "untitled.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
