@@ -25,6 +25,12 @@ namespace tutoriel
                     (int)(sourceRect.Height * Scale)
                 );
             }
+
+            set
+            { 
+                position.X = value.X;
+                position.Y = value.Y;
+            }
         }
 
         public Sprite(Texture2D texture, Vector2 position, float scale = 1f)

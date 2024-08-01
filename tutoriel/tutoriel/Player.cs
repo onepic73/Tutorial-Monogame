@@ -37,6 +37,7 @@ namespace tutoriel
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            velocity = Vector2.Zero;
 
             if (Keyboard.GetState().GetPressedKeys().Length == 0)
             {
@@ -48,44 +49,42 @@ namespace tutoriel
                 this.sourceRect = runningAM.GetFrame();
             }
 
-            float changeX = 0;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 lookingRight = true;
-                changeX += 5;
+                velocity.X  = 5;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 lookingRight = false;
-                changeX -= 5;
+                velocity.X = -5;
             }
-            position.X += changeX;
+            position.X += velocity.X;
 
             foreach (var sprite in collisionGroup)
             {
                 if (sprite != this && sprite.Rect.Intersects(Rect))
                 {
-                    position.X -= changeX;
+                    position.X -= velocity.X;
                     break;
                 }
             }
 
-            float changeY = 0;
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
-                changeY -= 5;
+                velocity.Y = -5;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
-                changeY += 5;
+                velocity.Y = 5;
             }
-            position.Y += changeY;
+            position.Y += velocity.Y;
 
             foreach (var sprite in collisionGroup)
             {
                 if (sprite != this && sprite.Rect.Intersects(Rect))
                 {
-                    position.Y -= changeY;
+                    position.Y -= velocity.Y;
                     break;
                 }
             }

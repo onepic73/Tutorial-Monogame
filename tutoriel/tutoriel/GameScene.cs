@@ -123,7 +123,21 @@ namespace tutoriel
             {
                 if (collisions.TryGetValue(new Vector2(tile.X, tile.Y), out int _val))
                 {
-                    Debug.WriteLine("intersecting hor");
+                    Rectangle collision = new Rectangle(
+                        tile.X * TILESIZE,
+                        tile.Y * TILESIZE,
+                        TILESIZE,
+                        TILESIZE
+                    );
+
+                    if (player.velocity.X > 0.0f)
+                    {
+                        player.position.X = collision.Left - player.Rect.Width;
+                    }
+                    else if (player.velocity.X < 0.0f)
+                    {
+                        player.position.X = collision.Right;
+                    }
                 }
             }
 
@@ -133,7 +147,21 @@ namespace tutoriel
             {
                 if (collisions.TryGetValue(new Vector2(tile.X, tile.Y), out int _val))
                 {
-                    Debug.WriteLine("intersecting vert");
+                    Rectangle collision = new Rectangle(
+                        tile.X * TILESIZE,
+                        tile.Y * TILESIZE,
+                        TILESIZE,
+                        TILESIZE
+                    );
+
+                    if (player.velocity.Y > 0.0f)
+                    {
+                        player.position.Y = collision.Top - player.Rect.Height;
+                    }
+                    else if (player.velocity.X < 0.0f)
+                    {
+                        player.position.Y = collision.Bottom;
+                    }
                 }
             }
 
