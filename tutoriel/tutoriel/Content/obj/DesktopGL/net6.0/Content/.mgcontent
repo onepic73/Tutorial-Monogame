@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Audio/coin.wav</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Audio/explosion.wav</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Audio/hurt.wav</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Audio/jump.wav</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Audio/power_up.wav</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Audio/tap.wav</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/collisions_Tileset.png</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/enemy.png</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Fonts/PixelOp.spritefont</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/knight.png</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/pixel_art.png</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/Song/time_for_adventure.mp3</File>
+    <File>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/TutorialMonogame/tutoriel/tutoriel/Content/world_tileset.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

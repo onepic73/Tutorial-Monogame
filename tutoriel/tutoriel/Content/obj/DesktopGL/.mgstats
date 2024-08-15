@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/tutoriel/tutoriel/Content/collisions_Tileset.png","C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/tutoriel/tutoriel/Content/bin/DesktopGL/collisions_Tileset.xnb","TextureProcessor","Texture2DContent",687,6229,0,1035405
+"C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/tutoriel/tutoriel/Content/world_tileset.png","C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/tutoriel/tutoriel/Content/bin/DesktopGL/world_tileset.xnb","TextureProcessor","Texture2DContent",15603,262229,0,0078904

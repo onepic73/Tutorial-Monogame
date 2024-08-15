@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/tutoriel/tutoriel/Content/Song/time_for_adventure.mp3</SourceFile>
+  <SourceTime>2024-06-05T13:31:14.5075349-04:00</SourceTime>
+  <DestFile>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/tutoriel/tutoriel/Content/bin/DesktopGL/Song/time_for_adventure.xnb</DestFile>
+  <DestTime>2024-07-05T14:53:48.5827306-04:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2022-07-26T07:44:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Onepic73/Desktop/Tout mes fichiers/Projets Monogame/tutoriel/tutoriel/Content/bin/DesktopGL/Song/time_for_adventure.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>
