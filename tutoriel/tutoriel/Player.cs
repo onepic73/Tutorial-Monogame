@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace tutoriel
@@ -14,7 +15,7 @@ namespace tutoriel
         int currentFrame;
         double timePerFrame;
         double timeCounter;
-        bool lookingRight;
+        public bool lookingRight;
 
         AnimationManager idleAM;
         AnimationManager deadAM;

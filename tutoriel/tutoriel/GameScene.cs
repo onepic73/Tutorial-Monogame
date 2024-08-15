@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -158,7 +158,7 @@ namespace tutoriel
                     {
                         player.position.Y = collision.Top - player.Rect.Height;
                     }
-                    else if (player.velocity.X < 0.0f)
+                    else if (player.velocity.Y < 0.0f)
                     {
                         player.position.Y = collision.Bottom;
                     }
@@ -197,12 +197,24 @@ namespace tutoriel
             {
                 for (int y = 0; y <= heightTiles; y++)
                 {
-                    intersections.Add(new Rectangle(
-                        (target.X + x*TILESIZE) / TILESIZE,
-                        (target.Y + y*(TILESIZE- 1)) / TILESIZE,
+                    if (player.lookingRight)
+                    {
+                        intersections.Add(new Rectangle(
+                        ((target.X + target.Width) + x * TILESIZE) / TILESIZE,
+                        (target.Y + y * (TILESIZE - 1)) / TILESIZE,
                         TILESIZE,
-                        TILESIZE    
-                    ));
+                        TILESIZE
+                        ));
+                    }
+                    else
+                    {
+                        intersections.Add(new Rectangle(
+                        (target.X + x * TILESIZE) / TILESIZE,
+                        (target.Y + y * (TILESIZE - 1)) / TILESIZE,
+                        TILESIZE,
+                        TILESIZE
+                        ));
+                    }
                 }
             }
 
