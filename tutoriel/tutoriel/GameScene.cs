@@ -234,7 +234,7 @@ namespace tutoriel
                 {
                     intersections.Add(new Rectangle(
                         (target.X + x * (TILESIZE-1)) / TILESIZE,
-                        (target.Y + y * TILESIZE) / TILESIZE,
+                        (target.Y + 3 + y * TILESIZE) / TILESIZE,
                         TILESIZE,
                         TILESIZE
                     ));
@@ -351,6 +351,8 @@ namespace tutoriel
                     4
                 );   
             }
+
+            DrawRectHollow(spriteBatch, player.Rect, 4);
 
 
             camera.Draw(spriteBatch, sprites);
