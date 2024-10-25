@@ -115,55 +115,9 @@ namespace tutoriel
             soundEffect = contentManager.Load<SoundEffect>("Audio/jump");
 
         }
+
         public void Update(GameTime gameTime) 
         {
-            intersections = getIntersectTilesX(player.Rect);
-
-            foreach (var tile in intersections) 
-            {
-                if (collisions.TryGetValue(new Vector2(tile.X, tile.Y), out int _val))
-                {
-                    Rectangle collision = new Rectangle(
-                        tile.X * TILESIZE,
-                        tile.Y * TILESIZE,
-                        TILESIZE,
-                        TILESIZE
-                    );
-
-                    if (player.velocity.X > 0.0f)
-                    {
-                        player.position.X = collision.Left - player.Rect.Width;
-                    }
-                    else if (player.velocity.X < 0.0f)
-                    {
-                        player.position.X = collision.Right;
-                    }
-                }
-            }
-
-            intersections = getIntersectTilesY(player.Rect);
-
-            foreach (var tile in intersections)
-            {
-                if (collisions.TryGetValue(new Vector2(tile.X, tile.Y), out int _val))
-                {
-                    Rectangle collision = new Rectangle(
-                        tile.X * TILESIZE,
-                        tile.Y * TILESIZE,
-                        TILESIZE,
-                        TILESIZE
-                    );
-
-                    if (player.velocity.Y > 0.0f)
-                    {
-                        player.position.Y = collision.Top - player.Rect.Height;
-                    }
-                    else if (player.velocity.Y < 0.0f)
-                    {
-                        player.position.Y = collision.Bottom;
-                    }
-                }
-            }
 
             camera.Follow(player.Rect, new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
 
@@ -185,65 +139,7 @@ namespace tutoriel
                 sprite.Update(gameTime);
             }
         }
-
-        public List<Rectangle> getIntersectTilesX(Rectangle target)
-        {
-            List<Rectangle> intersections = new();
-
-            int widthTiles = (target.Width - (target.Width % TILESIZE)) / TILESIZE;
-            int heightTiles = (target.Height- (target.Height% TILESIZE)) / TILESIZE;
-
-            for (int x = 0; x <= widthTiles; x++)
-            {
-                for (int y = 0; y <= heightTiles; y++)
-                {
-                    if (player.lookingRight)
-                    {
-                        intersections.Add(new Rectangle(
-                        ((target.X + target.Width) + x * TILESIZE) / TILESIZE,
-                        (target.Y + y * (TILESIZE - 1)) / TILESIZE,
-                        TILESIZE,
-                        TILESIZE
-                        ));
-                    }
-                    else
-                    {
-                        intersections.Add(new Rectangle(
-                        (target.X + x * TILESIZE) / TILESIZE,
-                        (target.Y + y * (TILESIZE - 1)) / TILESIZE,
-                        TILESIZE,
-                        TILESIZE
-                        ));
-                    }
-                }
-            }
-
-            return intersections;
-        }
-
-        public List<Rectangle> getIntersectTilesY(Rectangle target)
-        {
-            List<Rectangle> intersections = new();
-
-            int widthTiles = (target.Width - (target.Width % TILESIZE)) / TILESIZE;
-            int heightTiles = (target.Height - (target.Height % TILESIZE)) / TILESIZE;
-
-            for (int x = 0; x <= widthTiles; x++)
-            {
-                for (int y = 0; y <= heightTiles; y++)
-                {
-                    intersections.Add(new Rectangle(
-                        (target.X + x * (TILESIZE-1)) / TILESIZE,
-                        (target.Y + 3 + y * TILESIZE) / TILESIZE,
-                        TILESIZE,
-                        TILESIZE
-                    ));
-                }
-            }
-
-            return intersections;
-        }
-
+        
         public void Draw(SpriteBatch spriteBatch) 
         {
             int disp_tilesize = 64;
@@ -316,6 +212,7 @@ namespace tutoriel
                 spriteBatch.Draw(textureWTile, drect, src, Color.White);
             }
 
+            intersections.Clear();
             foreach (var item in collisions)
             {
                 Rectangle drect = new(
@@ -324,6 +221,7 @@ namespace tutoriel
                     disp_tilesize,
                     disp_tilesize
                 );
+                intersections.Add(drect);
 
                 int x = item.Value % num_tiles_row;
                 int y = item.Value / num_tiles_row;
@@ -338,33 +236,20 @@ namespace tutoriel
                 spriteBatch.Draw(textureCollisions, drect, src, Color.White);
             }
 
-            foreach (var item in intersections) 
-            {
-                DrawRectHollow(
-                    spriteBatch,
-                    new Rectangle(
-                        item.X * TILESIZE,
-                        item.Y * TILESIZE,
-                        TILESIZE,
-                        TILESIZE
-                    ),
-                    4
-                );   
-            }
-
             DrawRectHollow(spriteBatch, player.Rect, 4);
-
 
             camera.Draw(spriteBatch, sprites);
         }
-
         public void DrawRectHollow(SpriteBatch spriteBatch, Rectangle rect, int thickness)
         {
             rect.X -= (int)player.CameraPos.X;
             rect.Y -= (int)player.CameraPos.Y;
+            Rectangle rectCollision;
+
+            //top border collision
             spriteBatch.Draw(
                 rectangleTexture,
-                new Rectangle(
+                rectCollision = new Rectangle(
                     rect.X,
                     rect.Y,
                     rect.Width,
@@ -372,9 +257,19 @@ namespace tutoriel
                 ),
                 Color.White
             );
+            foreach (var drect in intersections) 
+            {
+                if (drect.Intersects(rectCollision))
+                {
+                    player.position.Y -= -5;
+                    break;
+                }
+            }
+
+            //bottom border collision
             spriteBatch.Draw(
                 rectangleTexture,
-                new Rectangle(
+                rectCollision = new Rectangle(
                     rect.X,
                     rect.Bottom - thickness,
                     rect.Width,
@@ -382,9 +277,19 @@ namespace tutoriel
                 ),
                 Color.White
             );
+            foreach (var drect in intersections)
+            {
+                if (drect.Intersects(rectCollision))
+                {
+                    player.position.Y -= 5;
+                    break;
+                }
+            }
+
+            //left border collision
             spriteBatch.Draw(
                 rectangleTexture,
-                new Rectangle(
+                rectCollision = new Rectangle(
                     rect.X,
                     rect.Y,
                     thickness,
@@ -392,9 +297,19 @@ namespace tutoriel
                 ),
                 Color.White
             );
+            foreach (var drect in intersections)
+            {
+                if (drect.Intersects(rectCollision))
+                {
+                    player.position.X -= -5;
+                    break;
+                }
+            }
+
+            //right border collision
             spriteBatch.Draw(
                 rectangleTexture,
-                new Rectangle(
+                rectCollision = new Rectangle(
                     rect.Right - thickness,
                     rect.Y,
                     thickness,
@@ -402,6 +317,15 @@ namespace tutoriel
                 ),
                 Color.White
             );
+            foreach (var drect in intersections)
+            {
+                if (drect.Intersects(rectCollision))
+                {
+                    player.position.X -= 5;
+                    break;
+                }
+            }
         }
+
     }
 }
