@@ -240,92 +240,53 @@ namespace tutoriel
 
             camera.Draw(spriteBatch, sprites);
         }
+
         public void DrawRectHollow(SpriteBatch spriteBatch, Rectangle rect, int thickness)
         {
             rect.X -= (int)player.CameraPos.X;
             rect.Y -= (int)player.CameraPos.Y;
-            Rectangle rectCollision;
 
-            //top border collision
-            spriteBatch.Draw(
-                rectangleTexture,
-                rectCollision = new Rectangle(
-                    rect.X,
-                    rect.Y,
-                    rect.Width,
-                    thickness
-                ),
-                Color.White
-            );
-            foreach (var drect in intersections) 
+            spriteBatch.Draw(rectangleTexture, new Rectangle(rect.X, rect.Y, rect.Width, thickness), Color.White); // Top
+            spriteBatch.Draw(rectangleTexture, new Rectangle(rect.X, rect.Bottom - thickness, rect.Width, thickness), Color.White); // Bottom
+            spriteBatch.Draw(rectangleTexture, new Rectangle(rect.X, rect.Y, thickness, rect.Height), Color.White); // Left
+            spriteBatch.Draw(rectangleTexture, new Rectangle(rect.Right - thickness, rect.Y, thickness, rect.Height), Color.White); // Right
+
+            if (Math.Abs(player.velocity.X) > 0)
             {
-                if (drect.Intersects(rectCollision))
-                {
-                    player.position.Y -= -5;
-                    break;
-                }
-            }
-
-            //bottom border collision
-            spriteBatch.Draw(
-                rectangleTexture,
-                rectCollision = new Rectangle(
-                    rect.X,
-                    rect.Bottom - thickness,
-                    rect.Width,
-                    thickness
-                ),
-                Color.White
-            );
-            foreach (var drect in intersections)
-            {
-                if (drect.Intersects(rectCollision))
-                {
-                    player.position.Y -= 5;
-                    break;
-                }
-            }
-
-            //left border collision
-            spriteBatch.Draw(
-                rectangleTexture,
-                rectCollision = new Rectangle(
-                    rect.X,
+                Rectangle xCollisionRect = new Rectangle(
+                    player.velocity.X > 0 ? rect.Right - thickness : rect.X,
                     rect.Y,
                     thickness,
-                    rect.Height
-                ),
-                Color.White
-            );
-            foreach (var drect in intersections)
-            {
-                if (drect.Intersects(rectCollision))
+                    rect.Height);
+
+                foreach (var drect in intersections)
                 {
-                    player.position.X -= -5;
-                    break;
+                    if (drect.Intersects(xCollisionRect))
+                    {
+                        player.position.X -= player.velocity.X > 0 ? 5 : -5;
+                        break;
+                    }
                 }
             }
 
-            //right border collision
-            spriteBatch.Draw(
-                rectangleTexture,
-                rectCollision = new Rectangle(
-                    rect.Right - thickness,
-                    rect.Y,
-                    thickness,
-                    rect.Height
-                ),
-                Color.White
-            );
-            foreach (var drect in intersections)
+            if (Math.Abs(player.velocity.Y) > 0)
             {
-                if (drect.Intersects(rectCollision))
+                Rectangle yCollisionRect = new Rectangle(
+                    rect.X,
+                    player.velocity.Y > 0 ? rect.Bottom - thickness : rect.Y,
+                    rect.Width,
+                    thickness);
+
+                foreach (var drect in intersections)
                 {
-                    player.position.X -= 5;
-                    break;
+                    if (drect.Intersects(yCollisionRect))
+                    {
+                        player.position.Y -= player.velocity.Y > 0 ? 5 : -5;
+                        break;
+                    }
                 }
             }
         }
 
-    }
+    } 
 }
