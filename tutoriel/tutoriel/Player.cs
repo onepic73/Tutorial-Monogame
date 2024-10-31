@@ -17,6 +17,13 @@ namespace tutoriel
         double timeCounter;
         public bool lookingRight;
 
+        bool isTouchingGround = false;
+        
+        const float finalVelocity = 5;
+        float initialVelocity = 0.2F;
+        float acceleraion = 2F;
+
+
         AnimationManager idleAM;
         AnimationManager deadAM;
         AnimationManager runningAM;
@@ -45,7 +52,7 @@ namespace tutoriel
                 this.sourceRect = idleAM.GetFrame();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A))
+            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 this.sourceRect = runningAM.GetFrame();
             }
@@ -53,7 +60,15 @@ namespace tutoriel
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 lookingRight = true;
-                velocity.X  = 5;
+                gameTime.ElapsedGameTime = TimeSpan.Zero;
+                if (initialVelocity < finalVelocity)
+                {
+                    initialVelocity += ((float)(initialVelocity + acceleraion * gameTime.ElapsedGameTime.TotalSeconds));
+                    velocity.X = initialVelocity;
+                }
+                else {
+                    velocity.X = 5;
+                }
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
@@ -71,11 +86,11 @@ namespace tutoriel
                 }
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 velocity.Y = -5;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 velocity.Y = 5;
             }
